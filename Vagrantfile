@@ -3,10 +3,9 @@ Vagrant.require_version '~> 1.7'
 # Check/install required vagrant plugins.
 plugin_installed = false
 
-%w[
+%w(
   vagrant-parallels
-  vagrant-triggers
-].each do |name|
+).each do |name|
   next if Vagrant.has_plugin?(name)
   system "vagrant plugin install #{name}"
   plugin_installed = true
