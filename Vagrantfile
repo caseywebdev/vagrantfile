@@ -16,7 +16,7 @@ exec "vagrant #{ARGV.join(' ')}" if plugin_installed
 
 Vagrant.configure('2') do |config|
   config.vm.define 'docker'
-  config.vm.box = 'bento/ubuntu-15.04'
+  config.vm.box = 'bento/debian-8.2'
   config.vm.box_version = '2.2.1'
 
   config.vm.provider 'parallels' do |v|
@@ -37,8 +37,9 @@ Vagrant.configure('2') do |config|
 
   config.vm.provision :shell, inline: <<-SH
 
-    # Install docker
-    apt-get install -y curl
+    # Install docker.
+    systemctl stop docker
+    systemctl disable docker
     curl -sSL https://get.docker.com | sh
     usermod -aG docker vagrant
 
@@ -47,6 +48,7 @@ Vagrant.configure('2') do |config|
 
     # Reload docker.unit file.
     systemctl daemon-reload
+    systemctl enable docker
     systemctl restart docker
   SH
 end
