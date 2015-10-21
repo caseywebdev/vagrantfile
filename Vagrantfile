@@ -18,6 +18,7 @@ NAME = 'docker'
 
 Vagrant.configure('2') do |config|
   config.vm.define NAME
+  config.vm.hostname = NAME
   config.vm.box = 'bento/debian-8.2'
   config.vm.box_version = '2.2.1'
 
