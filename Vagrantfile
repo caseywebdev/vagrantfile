@@ -39,7 +39,7 @@ Vagrant.configure('2') do |config|
     ENV['HOME'], ENV['HOME'],
     type: 'nfs',
     mount_options: %w(actimeo=2),
-    bsd__nfs_options: %w(alldirs))
+    bsd__nfs_options: %w(alldirs maproot=root:wheel))
 
   config.vm.provision :shell, inline: <<-SH
 
