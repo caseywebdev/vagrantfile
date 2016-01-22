@@ -20,7 +20,7 @@ Vagrant.configure('2') do |config|
   config.vm.define NAME
   config.vm.hostname = NAME
   config.vm.box = 'bento/debian-8.2'
-  config.vm.box_version = '2.2.1'
+  config.vm.box_version = '2.2.3'
 
   config.vm.provider 'parallels' do |v|
     v.name = NAME
@@ -39,7 +39,7 @@ Vagrant.configure('2') do |config|
     ENV['HOME'], ENV['HOME'],
     type: 'nfs',
     mount_options: %w(actimeo=2),
-    bsd__nfs_options: %w(alldirs maproot=root:wheel))
+    bsd__nfs_options: %w(alldirs))
 
   config.vm.provision :shell, inline: <<-SH
 
