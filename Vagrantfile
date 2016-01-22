@@ -14,18 +14,16 @@ end
 # The command must be re-run if a new plugin is installed.
 exec "vagrant #{ARGV.join(' ')}" if plugin_installed
 
-NAME = 'docker'
-
 Vagrant.configure('2') do |config|
-  config.vm.define NAME
-  config.vm.hostname = NAME
-  config.vm.box = 'bento/debian-8.2'
-  config.vm.box_version = '2.2.3'
+  config.vm.define 'docker'
+  config.vm.hostname = 'docker'
+  config.vm.box = 'boxcutter/debian82'
+  config.vm.box_version = '2.0.5'
 
   config.vm.provider 'parallels' do |v|
-    v.name = NAME
-    v.memory = (`sysctl -n hw.memsize`).to_i / 2**20 * 3 / 4
-    v.cpus = (`sysctl -n hw.ncpu`).to_i * 3 / 4
+    v.name = 'docker'
+    v.memory = `sysctl -n hw.memsize`.to_i / 2**20 * 3 / 4
+    v.cpus = `sysctl -n hw.ncpu`.to_i * 3 / 4
     v.check_guest_tools = false
     v.optimize_power_consumption = false
   end
